@@ -22,6 +22,7 @@ generation script in TensorFlow.
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+import rrdtool
 
 import keras  # pylint: disable=unused-import
 from tensorflow.python.tools.api.generator import create_python_api
