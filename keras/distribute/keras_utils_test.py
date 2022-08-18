@@ -499,7 +499,6 @@ class TestDistributionStrategySaveLoadWeights(tf.test.TestCase,
 
         #weights_file = tempfile.mktemp('.h5')
         with open('/tmp/wghts_f.h5') as weights_file:
-            weights_file = tempfile.mktemp('.h5')
             model.save_weights(weights_file)
 
             model_2 = keras_test_lib.get_model()
