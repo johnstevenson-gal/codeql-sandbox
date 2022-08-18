@@ -497,17 +497,19 @@ class TestDistributionStrategySaveLoadWeights(tf.test.TestCase,
             'mse')
         model.fit(dataset, epochs=1, steps_per_epoch=1)
 
-        weights_file = tempfile.mktemp('.h5')
-        model.save_weights(weights_file)
+        #weights_file = tempfile.mktemp('.h5')
+        with open('/tmp/wghts_f.h5') as weights_file:
+            weights_file = tempfile.mktemp('.h5')
+            model.save_weights(weights_file)
 
-        model_2 = keras_test_lib.get_model()
-        model_2.compile(
-            optimizer(),
-            'mse')
-        model_2.load_weights(weights_file)
-        model_2.predict(
-            keras_test_lib.get_predict_dataset(distribution), steps=2)
-        model_2.fit(dataset, epochs=1, steps_per_epoch=1)
+            model_2 = keras_test_lib.get_model()
+            model_2.compile(
+                optimizer(),
+                'mse')
+            model_2.load_weights(weights_file)
+            model_2.predict(
+                keras_test_lib.get_predict_dataset(distribution), steps=2)
+            model_2.fit(dataset, epochs=1, steps_per_epoch=1)
 
   @tf.__internal__.distribute.combinations.generate(
       tf.__internal__.test.combinations.times(
